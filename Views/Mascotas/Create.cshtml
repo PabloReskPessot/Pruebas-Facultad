@@ -1,0 +1,60 @@
+﻿@model Veterinaria.Models.Mascota
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Mascota</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="nombre" class="control-label"></label>
+                <input asp-for="nombre" class="form-control" />
+                <span asp-validation-for="nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="edad" class="control-label"></label>
+                <input asp-for="edad" class="form-control" />
+                <span asp-validation-for="edad" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="id_raza" class="control-label"></label>
+                <input asp-for="id_raza" class="form-control" />
+                <span asp-validation-for="id_raza" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label for="id_raza">Raza</label>
+                <select asp-for="id_raza" class="form-control" asp-items="@(new SelectList(ViewBag.Razas, "id", "raza"))">
+                    <option value="">Seleccione una raza</option>
+                </select>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="id_dueño" class="control-label"></label>
+                <input asp-for="id_dueño" class="form-control" />
+                <span asp-validation-for="id_dueño" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label for="id_dueño">Dueño</label>
+                <select asp-for="id_dueño" class="form-control" asp-items="@(new SelectList(ViewBag.Dueños, "id", "nombre"))">
+                    <option value="">Seleccione un dueño</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
